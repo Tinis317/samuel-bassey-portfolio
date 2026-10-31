@@ -1,99 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Samuel Etini Bassey — Junior Data Analyst. Excel, SQL and Power BI portfolio." />
-  <title>Samuel Etini Bassey | Junior Data Analyst</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Samuel Etini Bassey | Junior Data Analyst</title>
+<meta name="description" content="Samuel Etini Bassey, Junior Data Analyst. Excel, SQL and Power BI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0A1931;--navy2:#13264a;--gold:#D4AF37;--gold-soft:#C9A86A;
+  --ink:#15243b;--muted:#5d6a7e;--paper:#f6f7f9;--line:#e3e7ed;--white:#fff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;font-family:"Instrument Sans",system-ui,sans-serif;color:var(--ink);background:var(--white);line-height:1.65;font-size:17px}
+h1,h2,h3{font-family:"Bricolage Grotesque","Instrument Sans",sans-serif;line-height:1.08;margin:0;color:var(--navy);letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.wrap{width:min(1100px,calc(100% - 40px));margin-inline:auto}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff;border-bottom:1px solid #ffffff1a}
+.nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+.brand{display:flex;align-items:center;gap:12px;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:18px}
+.mark{width:38px;height:38px;border:1.5px solid var(--gold);color:var(--gold);border-radius:10px;display:grid;place-items:center;font-size:13px;font-weight:800}
+.nav-links{display:flex;align-items:center;gap:30px;font-size:15px;color:#d5dbe5}
+.nav-links a:hover{color:var(--gold)}
+.nav-links .cta{border:1px solid var(--gold-soft);color:var(--gold);padding:9px 18px;border-radius:6px}
+.nav-links .cta:hover{background:var(--gold);color:var(--navy)}
+.menu-btn{display:none;background:none;border:1px solid #ffffff40;color:#fff;border-radius:8px;padding:8px 12px;font:inherit;font-size:14px;cursor:pointer}
+
+/* hero */
+.hero{background:var(--navy);color:#fff;padding:72px 0 96px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.intro{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.photo{width:72px;height:72px;border-radius:50%;border:3px solid var(--gold);background:var(--navy2);color:var(--gold);display:grid;place-items:center;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:22px;overflow:hidden;flex-shrink:0}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:center 22%}
+.role{color:var(--gold-soft);font-weight:600;font-size:16px}
+.role small{display:block;color:#9fb0c7;font-weight:400;font-size:14px}
+.hero h1{color:#fff;font-size:clamp(42px,6.4vw,76px);font-weight:800;letter-spacing:-.035em}
+.hero h1 span{color:var(--gold)}
+.lead{color:#c4cddb;max-width:520px;margin:24px 0 0;font-size:18px}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;padding:14px 24px;border-radius:8px;font-weight:600;font-size:15px;border:1.5px solid transparent;transition:background .2s,border-color .2s}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-gold:hover{background:#e4c65c}
+.btn-line{border-color:#ffffff55;color:#fff}
+.btn-line:hover{border-color:var(--gold)}
+
+/* the one memorable element: a live bar chart */
+.chart{background:#0f2242;border:1px solid #ffffff1f;border-radius:16px;padding:26px 26px 20px;box-shadow:0 30px 80px #00000055}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;color:#9fb0c7;font-size:14px}
+.chart-head strong{color:#fff;font-family:"Bricolage Grotesque",sans-serif;font-size:20px}
+.bars{height:210px;display:flex;align-items:flex-end;gap:12px;margin-top:26px;border-bottom:1px solid #ffffff2a;padding-bottom:0}
+.bars button{flex:1;height:100%;background:none;border:0;padding:0;display:flex;align-items:flex-end;cursor:pointer;position:relative}
+.bars i{display:block;width:100%;height:0;background:linear-gradient(0deg,var(--gold-soft),#ecd88f);border-radius:5px 5px 0 0;transition:height .9s cubic-bezier(.2,.8,.2,1),filter .2s}
+.bars button:hover i,.bars button:focus-visible i,.bars button.on i{filter:brightness(1.15)}
+.bars.ready i{height:var(--h)}
+.bars button:nth-child(1) i{transition-delay:.05s}.bars button:nth-child(2) i{transition-delay:.12s}.bars button:nth-child(3) i{transition-delay:.19s}.bars button:nth-child(4) i{transition-delay:.26s}.bars button:nth-child(5) i{transition-delay:.33s}.bars button:nth-child(6) i{transition-delay:.4s}.bars button:nth-child(7) i{transition-delay:.47s}
+.axis{display:flex;gap:12px;color:#7f90a8;font-size:12px;margin-top:8px}
+.axis span{flex:1;text-align:center}
+.readout{margin-top:18px;min-height:46px;color:#c4cddb;font-size:14px}
+.readout b{color:var(--gold);font-weight:600}
+
+/* sections */
+section{padding:96px 0}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+h2{font-size:clamp(32px,4.4vw,48px);font-weight:800}
+.about p{color:var(--muted);margin:0 0 18px;max-width:560px}
+.approach{margin-top:28px;padding:20px 22px;background:#faf8f1;border-left:3px solid var(--gold-soft)}
+.approach b{color:var(--navy)}
+
+.tools{background:var(--paper)}
+.tools-head{max-width:560px;margin-bottom:40px}
+.tools-head p{color:var(--muted);margin:14px 0 0}
+.tool-list{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.tool-list li{display:grid;grid-template-columns:200px 1fr;gap:24px;padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.tool-list h3{font-size:24px}
+.tool-list p{margin:0;color:var(--muted);max-width:620px}
+
+.empty{border:1.5px dashed #cdd4de;border-radius:14px;padding:36px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;background:#fcfcfd}
+.empty h3{font-size:24px;margin-bottom:8px}
+.empty p{margin:0;color:var(--muted);max-width:620px}
+.projects-head{margin-bottom:36px}
+
+.contact{background:var(--navy);color:#fff}
+.contact h2{color:#fff}
+.contact p{color:#c4cddb;max-width:460px;margin:16px 0 0}
+.contact-grid{display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap}
+.links{display:flex;flex-direction:column;gap:18px;align-items:flex-start}
+.links .text{color:#e1e6ee;border-bottom:1px solid var(--gold-soft);padding-bottom:2px}
+.links .text:hover{color:var(--gold)}
+
+footer{background:#071326;color:#8c99ab;font-size:14px;padding:26px 0}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a:hover{color:var(--gold)}
+
+@media (max-width:820px){
+  body{font-size:16px}
+  .menu-btn{display:block}
+  .nav-links{display:none;position:absolute;top:72px;left:0;right:0;background:var(--navy);flex-direction:column;align-items:flex-start;gap:20px;padding:24px 20px 30px;border-top:1px solid #ffffff1a}
+  .nav-links.open{display:flex}
+  .hero{padding:48px 0 64px}
+  .hero-grid,.split{grid-template-columns:1fr;gap:40px}
+  section{padding:68px 0}
+  .tool-list li{grid-template-columns:1fr;gap:8px}
+  .empty{grid-template-columns:1fr;padding:26px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .bars i{transition:none}
+}
+</style>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav container" aria-label="Main navigation">
-      <a class="brand" href="#home"><span class="brand-mark">SB</span><span>Samuel Bassey<span class="brand-dot">.</span></span></a>
-      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-      <div class="nav-links">
-        <a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact" class="nav-cta">Contact me</a>
-      </div>
-    </nav>
-  </header>
 
-  <main>
-    <section class="hero container" id="home">
-      <div class="hero-copy">
-        <div class="profile-intro"><img class="profile-photo" src="assets/samuel-bassey-profile.jpeg" alt="Samuel Etini Bassey" /><p class="eyebrow"><span></span> JUNIOR DATA ANALYST</p></div>
-        <h1>Turning data into <em>clear decisions.</em></h1>
-        <p class="hero-lead">I’m <strong>Samuel Etini Bassey</strong> — a Junior Data Analyst interested in using data to help brands understand their audiences, generate leads and grow sales.</p>
-        <p class="brand-line">Founder, <strong>TINI GLOBAL</strong></p>
-        <div class="hero-actions">
-          <a class="button button-gold" href="#projects">Explore my work <span>↗</span></a>
-          <a class="button button-outline" href="mailto:sbassey999@gmail.com">Let’s connect</a>
+<header class="site-header">
+  <nav class="nav wrap" aria-label="Main">
+    <a class="brand" href="#home"><span class="mark">SB</span>Samuel Bassey</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#tools">Tools</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact" class="cta">Contact me</a>
+    </div>
+  </nav>
+</header>
+
+<main id="home">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="intro">
+          <div class="photo" id="photo">
+            <img src="assets/samuel-bassey-profile.jpeg" alt="Samuel Etini Bassey" onerror="this.remove();document.getElementById('photo').insertAdjacentText('beforeend','SB')">
+          </div>
+          <div class="role">Junior Data Analyst<small>Founder, TINI GLOBAL</small></div>
         </div>
-        <div class="hero-meta"><span>Excel</span><i></i><span>SQL</span><i></i><span>Power BI</span></div>
-      </div>
-      <div class="hero-visual">
-        <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div>
-        <div class="visual-card">
-          <div class="visual-top"><span class="live-dot"></span><span>DATA INSIGHTS</span><span class="visual-menu">•••</span></div>
-          <div class="chart-title">Performance overview</div>
-          <div class="chart-number">Insights <span>↗</span></div>
-          <div class="chart-bars"><b style="height:34%"></b><b style="height:52%"></b><b style="height:43%"></b><b style="height:69%"></b><b style="height:58%"></b><b style="height:86%"></b><b style="height:100%"></b></div>
-          <div class="chart-labels"><span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>W7</span></div>
-        </div>
-        <div class="floating-tag tag-excel">▦ <span>Excel</span></div>
-        <div class="floating-tag tag-sql">⌘ <span>SQL</span></div>
-        <div class="floating-tag tag-powerbi">▥ <span>Power BI</span></div>
-        <div class="visual-caption">Curiosity → Analysis → Impact</div>
-      </div>
-    </section>
-
-    <section class="ticker"><div class="container ticker-inner"><span>DATA ANALYSIS</span><b>✦</b><span>BUSINESS INTELLIGENCE</span><b>✦</b><span>DATA STORYTELLING</span><b>✦</b><span>CONTINUOUS LEARNING</span></div></section>
-
-    <section class="section container" id="about">
-      <div class="section-kicker">01 / ABOUT</div>
-      <div class="section-grid">
-        <h2>Making information<br><em>work harder.</em></h2>
-        <div class="about-copy">
-          <p>I’m Samuel Etini Bassey, a Junior Data Analyst and founder of TINI GLOBAL. I’m passionate about turning data into practical insights that support better business decisions.</p>
-          <p>My interests sit at the intersection of data analysis, digital marketing and business growth — understanding what the numbers say and translating them into clear next steps.</p>
-          <div class="about-note"><span class="note-icon">✳</span><span><strong>My approach</strong><br>Ask the right question. Explore the data. Communicate the insight.</span></div>
+        <h1>Turning data into <span>clear decisions.</span></h1>
+        <p class="lead">I help brands understand their audiences, generate leads and grow sales by finding what the numbers say and turning it into a next step.</p>
+        <div class="actions">
+          <a class="btn btn-gold" href="#projects">See my work</a>
+          <a class="btn btn-line" href="mailto:sbassey999@gmail.com">Email me</a>
         </div>
       </div>
-    </section>
 
-    <section class="section skills-section" id="skills">
-      <div class="container">
-        <div class="section-kicker">02 / TOOLKIT</div>
-        <div class="section-heading"><h2>Tools I work with<span class="gold">.</span></h2><p>Core tools for exploring, querying and communicating data.</p></div>
-        <div class="skill-grid">
-          <article class="skill-card"><div class="skill-icon excel">▦</div><h3>Microsoft Excel</h3><p>Organising, cleaning and analysing data to uncover useful patterns.</p><span class="skill-label">SPREADSHEETS</span></article>
-          <article class="skill-card"><div class="skill-icon sql">⌘</div><h3>SQL</h3><p>Querying structured datasets to retrieve, filter and summarise information.</p><span class="skill-label">DATA QUERYING</span></article>
-          <article class="skill-card"><div class="skill-icon bi">▥</div><h3>Power BI</h3><p>Building visual reports and dashboards that make findings easier to understand.</p><span class="skill-label">VISUAL ANALYTICS</span></article>
+      <div class="chart" aria-label="Sample weekly chart. Select a bar to see its value.">
+        <div class="chart-head"><span>Sample data, 7 weeks</span><strong>Weekly leads</strong></div>
+        <div class="bars" id="bars">
+          <button style="--h:34%" data-w="Week 1" data-v="34" aria-label="Week 1, 34 leads"><i></i></button>
+          <button style="--h:52%" data-w="Week 2" data-v="52" aria-label="Week 2, 52 leads"><i></i></button>
+          <button style="--h:43%" data-w="Week 3" data-v="43" aria-label="Week 3, 43 leads"><i></i></button>
+          <button style="--h:69%" data-w="Week 4" data-v="69" aria-label="Week 4, 69 leads"><i></i></button>
+          <button style="--h:58%" data-w="Week 5" data-v="58" aria-label="Week 5, 58 leads"><i></i></button>
+          <button style="--h:86%" data-w="Week 6" data-v="86" aria-label="Week 6, 86 leads"><i></i></button>
+          <button style="--h:100%" data-w="Week 7" data-v="100" aria-label="Week 7, 100 leads"><i></i></button>
         </div>
+        <div class="axis"><span>W1</span><span>W2</span><span>W3</span><span>W4</span><span>W5</span><span>W6</span><span>W7</span></div>
+        <div class="readout" id="readout" aria-live="polite">Select a bar to read its value. This is an illustration, not client data.</div>
       </div>
-    </section>
+    </div>
+  </div>
 
-    <section class="section container" id="projects">
-      <div class="section-kicker">03 / SELECTED WORK</div>
-      <div class="section-heading project-heading"><h2>Projects & analysis<span class="gold">.</span></h2><p>Practical work that demonstrates how I approach data questions.</p></div>
-      <div class="project-placeholder">
-        <div class="placeholder-symbol">＋</div>
-        <div><h3>Project showcase coming soon</h3><p>Project details were referenced from an earlier document, but that document was not identifiable as Samuel’s. Add the correct project titles, summaries, datasets and dashboard links here to keep this portfolio accurate.</p></div>
-        <span class="coming-soon">IN PROGRESS</span>
+  <section id="about" class="about">
+    <div class="wrap split">
+      <h2>Making information work harder.</h2>
+      <div>
+        <p>I'm Samuel Etini Bassey, a Junior Data Analyst and the founder of TINI GLOBAL. I turn data into practical insight that supports better business decisions.</p>
+        <p>My interests sit where data analysis, digital marketing and business growth meet: understanding what the numbers say and translating that into clear next steps.</p>
+        <div class="approach"><b>My approach.</b> Ask the right question. Explore the data. Communicate the insight.</div>
       </div>
-      <p class="small-note">Each project will include the business question, tools used, analysis process, key findings and a link to the work.</p>
-    </section>
+    </div>
+  </section>
 
-    <section class="cta-section" id="contact"><div class="container cta-inner">
-      <div><div class="section-kicker">04 / GET IN TOUCH</div><h2>Let’s turn your data<br>into your next <em>advantage.</em></h2><p>Have a project, opportunity or question? I’d be glad to connect.</p></div>
-      <div class="contact-actions"><a class="button button-gold" href="mailto:sbassey999@gmail.com">Email Samuel ↗</a><a class="social-link" href="https://www.linkedin.com/in/samuel-bassey-327b97233" target="_blank" rel="noopener">Connect on LinkedIn <span>↗</span></a></div>
-    </div></section>
-  </main>
+  <section id="tools" class="tools">
+    <div class="wrap">
+      <div class="tools-head">
+        <h2>Tools I work with.</h2>
+        <p>The core tools I use to explore, query and communicate data.</p>
+      </div>
+      <ul class="tool-list">
+        <li><h3>Microsoft Excel</h3><p>Organising, cleaning and analysing data to uncover useful patterns.</p></li>
+        <li><h3>SQL</h3><p>Querying structured datasets to retrieve, filter and summarise information.</p></li>
+        <li><h3>Power BI</h3><p>Building visual reports and dashboards that make findings easier to understand.</p></li>
+      </ul>
+    </div>
+  </section>
 
-  <footer class="footer"><div class="container footer-inner"><a class="brand" href="#home"><span class="brand-mark">SB</span><span>Samuel Bassey<span class="brand-dot">.</span></span></a><span>© <span id="year"></span> Samuel Etini Bassey. Built with purpose.</span><a href="#home" class="back-top">Back to top ↑</a></div></footer>
-  <script src="script.js"></script>
+  <section id="projects">
+    <div class="wrap">
+      <div class="projects-head"><h2>Projects and analysis.</h2></div>
+      <div class="empty">
+        <div>
+          <h3>Projects are being added</h3>
+          <p>Each project will show the business question, the tools used, how the analysis was done, the key findings and a link to the work.</p>
+        </div>
+        <a class="btn btn-gold" href="mailto:sbassey999@gmail.com?subject=Project%20enquiry">Ask about my work</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <h2>Let's turn your data into your next advantage.</h2>
+        <p>Have a project, an opportunity or a question? I'd be glad to hear from you.</p>
+      </div>
+      <div class="links">
+        <a class="btn btn-gold" href="mailto:sbassey999@gmail.com">Email Samuel</a>
+        <a class="text" href="https://www.linkedin.com/in/samuel-bassey-327b97233" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>&copy; <span id="year">2026</span> Samuel Etini Bassey</span>
+    <a href="#home">Back to top</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('menuBtn'),links=document.getElementById('navLinks');
+  btn.addEventListener('click',function(){
+    var open=links.classList.toggle('open');
+    btn.setAttribute('aria-expanded',String(open));
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){links.classList.remove('open');btn.setAttribute('aria-expanded','false');});
+  });
+  document.getElementById('year').textContent=new Date().getFullYear();
+
+  var bars=document.getElementById('bars'),out=document.getElementById('readout');
+  requestAnimationFrame(function(){requestAnimationFrame(function(){bars.classList.add('ready');});});
+  bars.querySelectorAll('button').forEach(function(b){
+    b.addEventListener('click',function(){
+      bars.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');
+      out.innerHTML='<b>'+b.dataset.w+'</b>: '+b.dataset.v+' leads. Sample figure for illustration.';
+    });
+  });
+})();
+</script>
 </body>
 </html>
