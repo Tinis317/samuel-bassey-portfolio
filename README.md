@@ -59,7 +59,7 @@ We-Ride customers are churning due to high surge pricing, especially on Saturday
 - `WE-RIDE.pptx`
 - `README.md`
 - `/images`
-- 
+- https://docs.google.com/presentation/d/1753aoIefCoVw3lYZqpkRRn_gV4zNhTOT/edit?usp=drive_link&ouid=106408375730070531057&rtpof=true&sd=true
 
 ### 👤 Author
 Samuel Etini Bassey | Junior Data Analyst | Lagos, Nigeria
