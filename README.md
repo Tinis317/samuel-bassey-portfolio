@@ -2,7 +2,7 @@
 
 Live site: https://tinis317.github.io/samuel-bassey-portfolio/
 
-Personal portfolio for Samuel Etini Bassey, Junior Data Analyst based in Port Harcourt, Nigeria.
+Personal portfolio for Samuel Etini Bassey, Junior Data Analyst based in Lagos, Nigeria.
 
 ## What it shows
 
